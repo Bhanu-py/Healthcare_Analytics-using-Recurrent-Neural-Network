@@ -83,16 +83,17 @@ print(train_y.head(3))
 t2 = time.time()
 print(f"Data Processed --- {t2-t1}sec")
 
-# clf = GaussianNB()	#27.6221225056
-# clf = BernoulliNB() #20.03
+# clf1 = GaussianNB()	#27.6221225056
+# clf2 = BernoulliNB() #20.03
 
-# clf = MLPClassifier(max_iter=300)   #36.465
-# clf = CatBoostClassifier(n_estimators=10000, random_state=2020, eval_metric='Accuracy', learning_rate=0.08, depth=8, bagging_temperature=0.3,)   #39.9109846412024
-# clf = make_pipeline(StandardScaler(), SVC(gamma='auto'))
-# clf = KNeighborsClassifier(n_neighbors=10)
+# clf3 = MLPClassifier(max_iter=300)   #36.465
+# clf4 = CatBoostClassifier(n_estimators=10000, random_state=2020, eval_metric='Accuracy', learning_rate=0.08, depth=8, bagging_temperature=0.3,)   #39.9109846412024
+# clf5 = make_pipeline(StandardScaler(), SVC(gamma='auto'))
+# clf6 = KNeighborsClassifier(n_neighbors=10)
 
 clf = Sequential()
-clf.add(Dense(30, input_dim=26, kernel_initializer="he_uniform", activation="relu"))
+clf.add(SimpleRNN(units=32, input_dim=26)
+clf.add(Dense(16, kernel_initializer="he_uniform", activation="relu"))
 clf.add(Dense(11, activation="sigmoid"))
 clf.compile(loss="binary_crossentropy", optimizer='adam')
 
